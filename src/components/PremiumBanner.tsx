@@ -2,8 +2,13 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { HStack, VStack } from "./layout/Stack";
 import Icon from "@expo/vector-icons/Ionicons";
 import { GlobalStyles } from "../constants/style";
+import { useMachine } from "@xstate/react";
+import { bannerMachine } from "../machines/bannerMachine";
 
 export const PremiumBanner = () => {
+  const [state, send] = useMachine(bannerMachine);
+  const open = state.matches("open");
+  if (!open) return null;
   return (
     <View style={styles.container}>
       <HStack
@@ -45,6 +50,7 @@ export const PremiumBanner = () => {
           </Text>
         </VStack>
         <Pressable
+          onPress={() => send("CLOSE")}
           style={{
             alignSelf: "flex-start",
           }}
@@ -53,7 +59,7 @@ export const PremiumBanner = () => {
             name="close"
             size={20}
             color="
-            black
+           #000 
             "
           />
         </Pressable>

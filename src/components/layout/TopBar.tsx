@@ -20,7 +20,7 @@ export const TopBar: React.FC<LayoutProps> = ({ title }) => {
           {title}
         </Text>
         <Pressable>
-          <Icon name="settings" size={24} color="white" />
+          <Icon name="settings" size={24} color="#fff" />
         </Pressable>
       </HStack>
     </View>
