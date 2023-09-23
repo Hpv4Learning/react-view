@@ -7,24 +7,22 @@ type Props = {
 };
 
 export const PokeBox: React.FC<Props> = ({
-  name = "prova",
-  image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/back/1.png",
-}) => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Image
-          source={{ uri: image }}
-          style={{
-            width: 20,
-            height: 20,
-          }}
-        />
-        <Text style={GlobalStyles.whiteText}>{name}</Text>
-      </View>
+  name = `prova`,
+  image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/back/1.png`,
+}) => (
+  <View style={styles.container}>
+    <View style={styles.header}>
+      <Image
+        source={{ uri: image }}
+        style={{
+          width: 20,
+          height: 20,
+        }}
+      />
+      <Text style={GlobalStyles.whiteText}>{name}</Text>
     </View>
-  );
-};
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -34,12 +32,12 @@ const styles = StyleSheet.create({
     padding: 8,
     height: 80,
     width: 80,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    display: `flex`,
+    alignItems: `center`,
+    justifyContent: `center`,
   },
   header: {
-    display: "flex",
+    display: `flex`,
     columnGap: 4,
   },
 });

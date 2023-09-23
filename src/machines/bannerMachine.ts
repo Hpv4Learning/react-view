@@ -1,18 +1,18 @@
 import { createMachine } from "xstate";
 
 export const bannerMachine = createMachine({
-  id: "banner",
-  initial: "open",
+  id: `banner`,
+  initial: `open`,
   states: {
     closed: {
       on: {
-        OPEN: "open",
+        OPEN: `open`,
       },
     },
     open: {
-      type: "final",
+      type: `final`,
       on: {
-        CLOSE: "closed",
+        CLOSE: `closed`,
       },
     },
   },

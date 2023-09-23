@@ -10,18 +10,18 @@ type Props = {
 };
 
 export const PokeRow: React.FC<Props> = ({
-  name = "Test",
-  image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/back/1.png",
+  name = `Test`,
+  image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/back/1.png`,
 }) => {
   const [isFavorite, setIsFavorite] = React.useState(false);
   return (
-    <Pressable onPress={() => console.log("evvai")}>
+    <Pressable onPress={() => console.log(`evvai`)}>
       <View style={style.box}>
         <HStack
           style={[
             style.stack,
             {
-              justifyContent: "space-between",
+              justifyContent: `space-between`,
               columnGap: 8,
             },
           ]}
@@ -33,9 +33,9 @@ export const PokeRow: React.FC<Props> = ({
             >
               <Pressable onPress={() => setIsFavorite(!isFavorite)}>
                 <Icon
-                  name={isFavorite ? "star" : "star-outline"}
+                  name={isFavorite ? `star` : `star-outline`}
                   size={14}
-                  color={isFavorite ? "yellow" : "white"}
+                  color={isFavorite ? `yellow` : `white`}
                 />
               </Pressable>
             </View>
@@ -59,7 +59,7 @@ export const PokeRow: React.FC<Props> = ({
               <Text
                 style={{
                   fontSize: 14,
-                  fontWeight: "500",
+                  fontWeight: `500`,
                   ...GlobalStyles.grey500Text,
                 }}
               >
@@ -70,8 +70,8 @@ export const PokeRow: React.FC<Props> = ({
           <Text
             style={{
               fontSize: 12,
-              fontWeight: "500",
-              alignSelf: "flex-end",
+              fontWeight: `500`,
+              alignSelf: `flex-end`,
 
               ...GlobalStyles.grey500Text,
             }}
@@ -99,9 +99,9 @@ const style = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 100,
-    overflow: "hidden",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    overflow: `hidden`,
+    display: `flex`,
+    alignItems: `center`,
+    justifyContent: `center`,
   },
 });
