@@ -58,9 +58,7 @@ export const PremiumBanner = () => {
           <Icon
             name="close"
             size={20}
-            color="
-           #000 
-            "
+            color="#000"
           />
         </Pressable>
       </HStack>

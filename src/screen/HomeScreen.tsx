@@ -10,10 +10,10 @@ import { NavigationProp } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { PokeBox } from "../components/PokeBox";
 import { GlobalStyles } from "../constants/style";
-import { RowSection } from "../components/RowSection";
 import { TopBar } from "../components/layout/TopBar";
 import { Medals } from "../components/Medals";
 import { PremiumBanner } from "../components/PremiumBanner";
+import { TokenList } from "../feature/saved/components/TokenList";
 
 const data = new Array(20).fill(0).map((_) => ({ name: ``, image: `` }));
 
@@ -71,9 +71,9 @@ export const HomeScreen = ({
             color: `white`,
           }}
         >
-          Your Pokemon
+          Your Token
         </Text>
-        <RowSection
+        <TokenList
           style={{
             marginTop: 12,
           }}

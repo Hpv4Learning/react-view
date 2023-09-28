@@ -16,8 +16,11 @@ export const GlobalStyles = StyleSheet.create({
   whiteText: {
     color: `#FFFFFF`,
   },
-  redText: {
-    color: `#FF0000`,
+  redText200: {
+    color: `#FF6955`,
+  },
+  greenText200: {
+    color: `#65E197`,
   },
   darkBox: {
     backgroundColor: `#444444`,
