@@ -1,5 +1,4 @@
 import {
-  FlatList,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -8,14 +7,13 @@ import {
 } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import { PokeBox } from "../components/PokeBox";
 import { GlobalStyles } from "../constants/style";
 import { TopBar } from "../components/layout/TopBar";
 import { Medals } from "../components/Medals";
 import { PremiumBanner } from "../components/PremiumBanner";
 import { TokenList } from "../feature/saved/components/TokenList";
+import { TopMoversSection } from "../feature/top-movers/components/TopMoversSection";
 
-const data = new Array(20).fill(0).map((_) => ({ name: ``, image: `` }));
 
 export const HomeScreen = ({
   navigation,
@@ -36,22 +34,7 @@ export const HomeScreen = ({
       >
         Most Recent
       </Text>
-      <FlatList
-        data={data}
-        style={{
-          marginTop: 8,
-        }}
-        renderItem={() => <PokeBox />}
-        keyExtractor={(_, i) => i.toString()}
-        ItemSeparatorComponent={() => (
-          <View
-            style={{
-              padding: 4,
-            }}
-          />
-        )}
-        horizontal
-      />
+      <TopMoversSection/>
       <View
         style={{
           marginTop: 24,

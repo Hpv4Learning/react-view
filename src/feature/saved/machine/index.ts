@@ -10,12 +10,12 @@ export const savedTokenMachine = createMachine(
       tokens: [] as CryptoCurrencyDetail[],
       error: null,
     },
-    id: `topMovers`,
+    id: `saved-tokens`,
     initial: `loading`,
     states: {
       loading: {
         invoke: {
-          id: `fetchTopMovers`,
+          id: `fetchSavedTokens`,
           src: () => getAllTokenQuery,
           onDone: [
             {

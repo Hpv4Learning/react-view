@@ -1,4 +1,4 @@
-export const ListedTokens = [
+export const listedTokens = [
   [
     `bitcoin`,
     `ethereum`,
@@ -13,4 +13,6 @@ export const ListedTokens = [
   ],
 ];
 
-export const joinedTokensAsUrl = ListedTokens.flat().join(`,`);
+export const joinedTokensAsUrl = listedTokens.flat().join(`%2C`);
+
+export const defaultURL = `https://api.coingecko.com/api/v3`;
