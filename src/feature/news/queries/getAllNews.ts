@@ -10,7 +10,7 @@ type NewsRequest = {
 const fetchNews = async ({ q }: NewsRequest) => {
   try {
     const response = await fetch(
-      `${newsApiUrl}&q=${q}&searchIn=title&language=it&pageSize=10`,
+      `${newsApiUrl}&q=${q}&searchIn=title&language=it&pageSize=15`,
       {
         method: `GET`,
         headers: { Authorization: `Bearer ${NEWS_API_KEY}` },

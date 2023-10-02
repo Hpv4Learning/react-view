@@ -10,7 +10,7 @@ export const NewsSection = () => {
     <FlatList
     data={context.news}
     renderItem={({item}) => <Article {...item} />}
-    keyExtractor={({source:{id}}) => id}
+    keyExtractor={({source:{id}, title}) => `${id}-${title}`}
     horizontal
     ItemSeparatorComponent={() => <View style={{width: 10}}/>}
 

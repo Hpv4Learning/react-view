@@ -41,7 +41,7 @@ export const TokenCard: React.FC<CryptoCurrencyDetail> = ({
               color: GlobalStyles.whiteText.color,
             }}
           >
-            {current_price}
+            {current_price}€
           </Text>
         </Chip>
       </HStack>

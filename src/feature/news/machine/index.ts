@@ -1,6 +1,7 @@
 import { assign, createMachine } from "xstate";
 import { NewsResponse } from "../types";
 import { fetchNewsQuery } from "../queries/getAllNews";
+import { parseNewsWithImages } from "../parser";
 
 type Context = {
   error: null | boolean;
@@ -26,7 +27,7 @@ export const newsMachine = createMachine({
             target: `loaded`,
             actions: assign((ctx, event) => ({
               ...ctx,
-              news: event.data,
+              news: parseNewsWithImages(event.data),
             })),
           },
         ],
