@@ -9,10 +9,10 @@ import { NavigationProp } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { GlobalStyles } from "../constants/style";
 import { TopBar } from "../components/layout/TopBar";
-import { Medals } from "../components/Medals";
 import { PremiumBanner } from "../components/PremiumBanner";
 import { TokenList } from "../feature/saved/components/TokenList";
 import { TopMoversSection } from "../feature/top-movers/components/TopMoversSection";
+import { NewsSection } from "../feature/news/components/NewsSection";
 
 
 export const HomeScreen = ({
@@ -32,7 +32,7 @@ export const HomeScreen = ({
           color: `white`,
         }}
       >
-        Most Recent
+        Top Movers
       </Text>
       <TopMoversSection/>
       <View
@@ -74,7 +74,7 @@ export const HomeScreen = ({
             color: `white`,
           }}
         >
-          Le tue medaglie
+          Ultime News 
         </Text>
         <Text
           style={{
@@ -90,7 +90,7 @@ export const HomeScreen = ({
             marginTop: 12,
           }}
         >
-          <Medals />
+          <NewsSection />
         </View>
       </View>
     </ScrollView>
