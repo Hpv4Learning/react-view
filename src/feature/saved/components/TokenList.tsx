@@ -1,15 +1,16 @@
 import { FlatList, View, ViewProps } from "react-native";
-import { PokeRow } from "./PokeRow";
+import {  TokenRow } from "./TokenRow";
+import { useMachine } from "@xstate/react";
+import { savedTokenMachine } from "../machine";
 
-const data = new Array(4).fill(0).map((_, i) => ({ name: "", image: "" }));
-
-export const RowSection: React.FC<ViewProps> = ({ style }) => {
+export const TokenList: React.FC<ViewProps> = ({ style }) => {
+  const [state] = useMachine(savedTokenMachine);
   return (
     <View style={style}>
       <FlatList
         scrollEnabled={false}
-        data={data}
-        renderItem={() => <PokeRow />}
+        data={state.context.tokens}
+        renderItem={({item}) => <TokenRow {...item}/>}
         keyExtractor={(_, i) => i.toString()}
         ItemSeparatorComponent={() => (
           <View

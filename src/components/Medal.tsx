@@ -15,43 +15,41 @@ type MedalProps = {
   color: string;
 };
 
-export const Medal = ({ name, img, location, color }: MedalProps) => {
-  return (
-    <View style={styles.box}>
-      <VStack style={styles.boxContent}>
-        <HStack style={styles.boxInfo}>
-          <Text
-            style={{
-              fontSize: 16,
-              ...GlobalStyles.lightText,
-              fontWeight: "bold",
-            }}
-          >
-            {name}
-          </Text>
-          <Image source={img} style={{ width: 18, height: 18 }} />
-        </HStack>
-        <HStack
+export const Medal = ({ name, img, location, color }: MedalProps) => (
+  <View style={styles.box}>
+    <VStack style={styles.boxContent}>
+      <HStack style={styles.boxInfo}>
+        <Text
           style={{
-            paddingHorizontal: 8,
-            paddingVertical: 4,
-            ...GlobalStyles.radiusMd,
-            backgroundColor: color,
+            fontSize: 16,
+            ...GlobalStyles.lightText,
+            fontWeight: `bold`,
           }}
         >
-          <Text
-            style={{
-              color: "white",
-              fontWeight: "500",
-            }}
-          >
-            {location}
-          </Text>
-        </HStack>
-      </VStack>
-    </View>
-  );
-};
+          {name}
+        </Text>
+        <Image source={img} style={{ width: 18, height: 18 }} />
+      </HStack>
+      <HStack
+        style={{
+          paddingHorizontal: 8,
+          paddingVertical: 4,
+          ...GlobalStyles.radiusMd,
+          backgroundColor: color,
+        }}
+      >
+        <Text
+          style={{
+            color: `white`,
+            fontWeight: `500`,
+          }}
+        >
+          {location}
+        </Text>
+      </HStack>
+    </VStack>
+  </View>
+);
 
 const styles = StyleSheet.create({
   box: {
@@ -59,17 +57,17 @@ const styles = StyleSheet.create({
     ...GlobalStyles.radiusMd,
     ...GlobalStyles.borderColor,
     width: 240,
-    height: "100%",
+    height: `100%`,
     padding: 12,
     flex: 1,
   },
   boxContent: {
-    justifyContent: "space-between",
-    height: "100%",
+    justifyContent: `space-between`,
+    height: `100%`,
   },
   boxInfo: {
-    justifyContent: "space-between",
-    width: "100%",
+    justifyContent: `space-between`,
+    width: `100%`,
   },
   label: {
     padding: 4,

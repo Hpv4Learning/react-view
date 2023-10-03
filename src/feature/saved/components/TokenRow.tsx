@@ -1,27 +1,29 @@
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { GlobalStyles } from "../constants/style";
+import { GlobalStyles } from "../../../constants/style";
 import Icon from "@expo/vector-icons/Ionicons";
-import { HStack } from "./layout/Stack";
+import { HStack, VStack } from "../../../components/layout/Stack";
+import { CryptoCurrencyDetail } from "../machine/types";
+import { createPercentageColor } from "../../../utils/tokenUtils";
 
-type Props = {
-  name?: string;
-  image?: string;
-};
+type Props = CryptoCurrencyDetail;
 
-export const PokeRow: React.FC<Props> = ({
-  name = "Test",
-  image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/back/1.png",
+export const TokenRow: React.FC<Props> = ({
+  name,
+  image,
+  current_price,
+  price_change_percentage_24h,
 }) => {
   const [isFavorite, setIsFavorite] = React.useState(false);
+ 
   return (
-    <Pressable onPress={() => console.log("evvai")}>
+    <Pressable>
       <View style={style.box}>
         <HStack
           style={[
             style.stack,
             {
-              justifyContent: "space-between",
+              justifyContent: `space-between`,
               columnGap: 8,
             },
           ]}
@@ -33,9 +35,9 @@ export const PokeRow: React.FC<Props> = ({
             >
               <Pressable onPress={() => setIsFavorite(!isFavorite)}>
                 <Icon
-                  name={isFavorite ? "star" : "star-outline"}
+                  name={isFavorite ? `star` : `star-outline`}
                   size={14}
-                  color={isFavorite ? "yellow" : "white"}
+                  color={isFavorite ? `yellow` : `white`}
                 />
               </Pressable>
             </View>
@@ -59,7 +61,7 @@ export const PokeRow: React.FC<Props> = ({
               <Text
                 style={{
                   fontSize: 14,
-                  fontWeight: "500",
+                  fontWeight: `500`,
                   ...GlobalStyles.grey500Text,
                 }}
               >
@@ -67,17 +69,33 @@ export const PokeRow: React.FC<Props> = ({
               </Text>
             </HStack>
           </HStack>
-          <Text
-            style={{
-              fontSize: 12,
-              fontWeight: "500",
-              alignSelf: "flex-end",
+          <VStack style={{
+            rowGap: 4,
+            justifyContent: `space-between`,
+            alignItems: `flex-end`,
+        
+          }}>
+            <Text
+              style={{
+                fontSize: 10,
+                fontWeight: `500`,
+                color: createPercentageColor(price_change_percentage_24h),
+              }}
+            >
+              {price_change_percentage_24h.toFixed(2)}%
+            </Text>
+            <Text
+              style={{
+                fontSize: 12,
+                fontWeight: `500`,
+                alignSelf: `flex-end`,
 
-              ...GlobalStyles.grey500Text,
-            }}
-          >
-            Last Seen: 1 day ago
-          </Text>
+                ...GlobalStyles.grey500Text,
+              }}
+            >
+              {current_price}€
+            </Text>
+          </VStack>
         </HStack>
       </View>
     </Pressable>
@@ -99,9 +117,9 @@ const style = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 100,
-    overflow: "hidden",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    overflow: `hidden`,
+    display: `flex`,
+    alignItems: `center`,
+    justifyContent: `center`,
   },
 });
