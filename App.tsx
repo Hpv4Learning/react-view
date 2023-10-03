@@ -10,18 +10,18 @@ export default function App() {
   return (
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
-      <Stack.Navigator
-        initialRouteName="HomeScreen"
-        screenOptions={{
-          headerBackTitleVisible: false,
-          headerShown: false,
-          animation: `slide_from_right`,
-        }}
-      >
+        <Stack.Navigator
+          initialRouteName="HomeScreen"
+          screenOptions={{
+            headerBackTitleVisible: false,
+            headerShown: false,
+            animation: `slide_from_right`,
+          }}
+        >
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
           <Stack.Screen name="PokedexScreen" component={PokedexScreen} />
-      </Stack.Navigator>
-        </QueryClientProvider>
+        </Stack.Navigator>
+      </QueryClientProvider>
     </NavigationContainer>
   );
 }
