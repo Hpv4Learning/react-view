@@ -1,28 +1,94 @@
 import { Pressable, StyleSheet, View } from "react-native";
 import { HStack } from "./Stack";
 import Icon from "@expo/vector-icons/Ionicons";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { useMemo } from "react";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-export const BottomNavigation = () => (
-  <View style={styles.container}>
-    <HStack style={styles.stack}>
-      <HStack style={[styles.navItem]}>
-        <Pressable>
-          <Icon name="home" size={24} color="#fff" />
+type NavigationProps = {
+  HomeScreen?: {
+    name?: "HomeScreen";
+  };
+  MarketScreen?: {
+    name?: "MarketScreen";
+  };
+  PortFolioScreen?: {
+    name?: "PortFolioScreen";
+  };
+};
+
+type SingleNavigationProp = NativeStackNavigationProp<NavigationProps>;
+
+export const BottomNavigation = () => {
+  const { name } = useRoute();
+  const { navigate } = useNavigation<SingleNavigationProp>();
+  const iconsOnActiveTabs = useMemo(
+    () => ({
+      home:
+        name === `HomeScreen` ? (`home` as const) : (`home-outline` as const),
+      stats:
+        name === `MarketScreen`
+          ? (`stats-chart` as const)
+          : (`stats-chart-outline` as const),
+      cash:
+        name === `PortFolioScreen`
+          ? (`cash` as const)
+          : (`cash-outline` as const),
+    }),
+    [name]
+  );
+  return (
+    <View style={styles.container}>
+      <HStack style={styles.stack}>
+        <Pressable
+          onPress={() => navigate(`HomeScreen`)}
+          style={{
+            flex: 1,
+          }}
+        >
+          <HStack
+            style={[
+              styles.navItem,
+              name === `HomeScreen` ? styles.activeItem : undefined,
+            ]}
+          >
+            <Icon name={iconsOnActiveTabs.home} size={24} color="#fff" />
+          </HStack>
+        </Pressable>
+        <Pressable
+          onPress={() => navigate(`MarketScreen`)}
+          style={{
+            flex: 1,
+          }}
+        >
+          <HStack
+            style={[
+              styles.navItem,
+              name === `MarketScreen` ? styles.activeItem : undefined,
+            ]}
+          >
+            <Icon name={iconsOnActiveTabs.stats} size={24} color="#fff" />
+          </HStack>
+        </Pressable>
+        <Pressable
+          onPress={() => navigate(`PortFolioScreen`)}
+          style={{
+            flex: 1,
+          }}
+        >
+          <HStack
+            style={[
+              styles.navItem,
+              name === `PortFolioScreen` ? styles.activeItem : undefined,
+            ]}
+          >
+            <Icon name={iconsOnActiveTabs.cash} size={24} color="#fff" />
+          </HStack>
         </Pressable>
       </HStack>
-      <HStack style={styles.navItem}>
-        <Pressable>
-          <Icon name="stats-chart" size={24} color="#fff" />
-        </Pressable>
-      </HStack>
-      <HStack style={[styles.navItem]}>
-        <Pressable>
-          <Icon name="cash" size={24} color="#fff" />
-        </Pressable>
-      </HStack>
-    </HStack>
-  </View>
-);
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -48,5 +114,8 @@ const styles = StyleSheet.create({
     alignContent: `center`,
     justifyContent: `center`,
     height: `100%`,
+  },
+  activeItem: {
+    backgroundColor: `#111`,
   },
 });
