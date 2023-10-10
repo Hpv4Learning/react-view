@@ -16,6 +16,7 @@ import Icon from "@expo/vector-icons/Ionicons";
 import { DrawerHeader } from "./DrawerHeader";
 import { DrawerBody } from "./DrawerBody";
 import { DrawerFooter } from "./DrawerFooter";
+import { DrawerAnimatedView } from "./DrawerAnimatedView";
 
 type NavigationProps = {
   ProfileScreen?: {
@@ -52,87 +53,83 @@ export const Drawer = () => {
     navigate(`BillingScreen`);
   }, [navigate, send]);
 
-  if (!isOpen) return null;
   return (
-    <TouchableOpacity style={style.main} onPress={() => send(`CLOSE`)}>
-      <SafeAreaView
-        style={{
-          flex: 1,
-        }}
-      >
-        <Pressable
-          onPress={preventEventPropagation}
+    <DrawerAnimatedView status={isOpen ? `opened` : `closed`}>
+      <TouchableOpacity style={style.main} onPress={() => send(`CLOSE`)}>
+        <SafeAreaView
           style={{
             flex: 1,
-            backgroundColor: GlobalStyles.extraDarkBox.backgroundColor,
-            width: `90%`,
-            height: `100%`,
           }}
         >
-          <DrawerHeader />
-          <DrawerBody
+          <Pressable
+            onPress={preventEventPropagation}
             style={{
-              marginTop: 16,
               flex: 1,
+              backgroundColor: GlobalStyles.extraDarkBox.backgroundColor,
+              width: `90%`,
+              height: `100%`,
             }}
           >
-            <Pressable onPress={navigateToProfile}>
-              <DrawerItem>
-                <Icon name="person" size={20} color="white" />
-                <Text
-                  style={{
-                    color: `white`,
-                    fontWeight: `600`,
-                    fontSize: 16,
-                  }}
-                >
-                  Profile
-                </Text>
-              </DrawerItem>
-            </Pressable>
-            <Pressable onPress={navigateToBilling}>
-              <DrawerItem>
-                <Icon name="card" size={20} color="white" />
-                <Text
-                  style={{
-                    color: `white`,
-                    fontWeight: `600`,
-                    fontSize: 16,
-                  }}
-                >
-                  Billing
-                </Text>
-              </DrawerItem>
-            </Pressable>
-            <Pressable onPress={() => send(`CLOSE`)}>
-              <DrawerItem>
-                <Icon name="settings" size={20} color="white" />
-                <Text
-                  style={{
-                    color: `white`,
-                    fontWeight: `600`,
-                    fontSize: 16,
-                  }}
-                >
-                  Settings
-                </Text>
-              </DrawerItem>
-            </Pressable>
-          </DrawerBody>
-          <DrawerFooter />
-        </Pressable>
-      </SafeAreaView>
-    </TouchableOpacity>
+            <DrawerHeader />
+            <DrawerBody
+              style={{
+                marginTop: 16,
+                flex: 1,
+              }}
+            >
+              <Pressable onPress={navigateToProfile}>
+                <DrawerItem>
+                  <Icon name="person" size={20} color="white" />
+                  <Text
+                    style={{
+                      color: `white`,
+                      fontWeight: `600`,
+                      fontSize: 16,
+                    }}
+                  >
+                    Profile
+                  </Text>
+                </DrawerItem>
+              </Pressable>
+              <Pressable onPress={navigateToBilling}>
+                <DrawerItem>
+                  <Icon name="card" size={20} color="white" />
+                  <Text
+                    style={{
+                      color: `white`,
+                      fontWeight: `600`,
+                      fontSize: 16,
+                    }}
+                  >
+                    Billing
+                  </Text>
+                </DrawerItem>
+              </Pressable>
+              <Pressable onPress={() => send(`CLOSE`)}>
+                <DrawerItem>
+                  <Icon name="settings" size={20} color="white" />
+                  <Text
+                    style={{
+                      color: `white`,
+                      fontWeight: `600`,
+                      fontSize: 16,
+                    }}
+                  >
+                    Settings
+                  </Text>
+                </DrawerItem>
+              </Pressable>
+            </DrawerBody>
+            <DrawerFooter />
+          </Pressable>
+        </SafeAreaView>
+      </TouchableOpacity>
+    </DrawerAnimatedView>
   );
 };
 
 const style = StyleSheet.create({
   main: {
-    zIndex: 10,
-    position: `absolute`,
-    top: 0,
-    right: 0,
-    bottom: 0,
     backgroundColor: `rgba(0, 0, 0, 0.5)`,
     flex: 1,
     height: `100%`,
