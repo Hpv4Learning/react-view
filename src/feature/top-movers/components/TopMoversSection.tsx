@@ -17,6 +17,7 @@ export const TopMoversSection = () => {
       }}
       renderItem={({ item }) => <TokenCard {...item} />}
       keyExtractor={(_, i) => i.toString()}
+      showsHorizontalScrollIndicator={false}
       ItemSeparatorComponent={() => (
         <View
           style={{

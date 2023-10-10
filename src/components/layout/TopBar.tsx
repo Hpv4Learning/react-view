@@ -2,29 +2,39 @@ import { Pressable, StyleSheet, Text } from "react-native";
 import { HStack } from "./Stack";
 import Icon from "@expo/vector-icons/Ionicons";
 import { Container } from "./Container";
+import { useActor } from "@xstate/react";
+import { useDrawerState } from "../../feature/navigation/context/DrawerNavigationContext";
 
 type LayoutProps = {
   title: string;
 };
 
-export const TopBar: React.FC<LayoutProps> = ({ title }) => (
-  <Container style={styles.container}>
-    <HStack style={styles.stack}>
-      <Text
-        style={{
-          color: `white`,
-          fontWeight: `bold`,
-          fontSize: 18,
-        }}
-      >
-        {title}
-      </Text>
-      <Pressable>
-        <Icon name="settings" size={24} color="#fff" />
-      </Pressable>
-    </HStack>
-  </Container>
-);
+export const TopBar: React.FC<LayoutProps> = ({ title }) => {
+  const drawerService = useDrawerState();
+  const [, send] = useActor(drawerService);
+  return (
+    <Container style={styles.container}>
+      <HStack style={styles.stack}>
+        <Text
+          style={{
+            color: `white`,
+            fontWeight: `bold`,
+            fontSize: 18,
+          }}
+        >
+          {title}
+        </Text>
+        <Pressable
+          onPress={() => {
+            send(`OPEN`);
+          }}
+        >
+          <Icon name="settings" size={24} color="#fff" />
+        </Pressable>
+      </HStack>
+    </Container>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
