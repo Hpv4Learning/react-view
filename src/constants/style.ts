@@ -1,11 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export const GlobalStyles = StyleSheet.create({
+  main: {
+    flex: 1,
+    backgroundColor: `#191919`,
+  },
   container: {
     flex: 1,
-    height: 100,
-    padding: 16,
-    backgroundColor: `#323232`,
+    paddingHorizontal: 16,
   },
   darkBg: {
     backgroundColor: `#323232`,
@@ -24,12 +26,9 @@ export const GlobalStyles = StyleSheet.create({
   },
   darkBox: {
     backgroundColor: `#444444`,
-    borderWidth: 1,
   },
   extraDarkBox: {
     backgroundColor: `#121212`,
-    borderColor: `#444444`,
-    borderWidth: 1,
   },
   grey700Text: {
     color: `#323232`,

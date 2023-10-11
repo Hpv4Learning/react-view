@@ -11,7 +11,6 @@ export const bannerMachine = createMachine({
       },
     },
     open: {
-      type: `final`,
       on: {
         CLOSE: `closed`,
       },

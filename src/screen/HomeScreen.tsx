@@ -1,10 +1,4 @@
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { GlobalStyles } from "../constants/style";
@@ -13,7 +7,8 @@ import { PremiumBanner } from "../components/PremiumBanner";
 import { TokenList } from "../feature/saved/components/TokenList";
 import { TopMoversSection } from "../feature/top-movers/components/TopMoversSection";
 import { NewsSection } from "../feature/news/components/NewsSection";
-
+import { Container } from "../components/layout/Container";
+import { BottomNavigation } from "../components/layout/BottomNavigation";
 
 export const HomeScreen = ({
   navigation,
@@ -21,30 +16,42 @@ export const HomeScreen = ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   navigation: NavigationProp<any>;
 }) => (
-  <SafeAreaView style={styles.container}>
-    <StatusBar style="auto" />
-    <TopBar title="Home" />
-    <ScrollView style={styles.box}>
-      <Text
+  <View style={GlobalStyles.main}>
+    <SafeAreaView
+      style={{
+        backgroundColor: `#222`,
+      }}
+    >
+      <StatusBar style="inverted" />
+      <TopBar title="Home" />
+    </SafeAreaView>
+    <ScrollView
+      style={styles.box}
+      contentContainerStyle={{ paddingVertical: 24 }}
+    >
+      <Container>
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: `bold`,
+            color: `white`,
+          }}
+        >
+          Top Movers
+        </Text>
+      </Container>
+      <TopMoversSection />
+      <Container
         style={{
-          fontSize: 18,
-          fontWeight: `bold`,
-          color: `white`,
-        }}
-      >
-        Top Movers
-      </Text>
-      <TopMoversSection/>
-      <View
-        style={{
-          marginTop: 24,
+          marginTop: 32,
         }}
       >
         <PremiumBanner />
-      </View>
-      <View
+      </Container>
+
+      <Container
         style={{
-          marginTop: 24,
+          marginTop: 32,
         }}
       >
         <Text
@@ -61,30 +68,33 @@ export const HomeScreen = ({
             marginTop: 12,
           }}
         />
-      </View>
+      </Container>
       <View
         style={{
-          marginTop: 36,
+          marginTop: 32,
         }}
       >
-        <Text
-          style={{
-            fontSize: 18,
-            fontWeight: `bold`,
-            color: `white`,
-          }}
-        >
-          Ultime News 
-        </Text>
-        <Text
-          style={{
-            fontSize: 14,
-            color: `#c8c8c8`,
-            marginTop: 8,
-          }}
-        >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        </Text>
+        <Container>
+          <Text
+            style={{
+              fontSize: 18,
+              fontWeight: `bold`,
+              color: `white`,
+            }}
+          >
+            Ultime News
+          </Text>
+          <Text
+            style={{
+              fontSize: 14,
+              color: `#c8c8c8`,
+              marginTop: 8,
+            }}
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </Text>
+        </Container>
+
         <View
           style={{
             marginTop: 12,
@@ -94,14 +104,14 @@ export const HomeScreen = ({
         </View>
       </View>
     </ScrollView>
-  </SafeAreaView>
+    <SafeAreaView>
+      <BottomNavigation />
+    </SafeAreaView>
+  </View>
 );
 
 const styles = StyleSheet.create({
-  container: {
-    ...GlobalStyles.container,
-  },
   box: {
-    padding: 14,
+    flex: 1,
   },
 });

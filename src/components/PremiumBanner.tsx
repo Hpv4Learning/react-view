@@ -55,11 +55,7 @@ export const PremiumBanner = () => {
             alignSelf: `flex-start`,
           }}
         >
-          <Icon
-            name="close"
-            size={20}
-            color="#000"
-          />
+          <Icon name="close" size={20} color="#000" />
         </Pressable>
       </HStack>
     </View>
